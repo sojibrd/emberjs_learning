@@ -4,7 +4,7 @@
 
 rule-গুলো `ember-best-practices` skill থেকে হুবহু নেওয়া — লেখক আর লাইসেন্স [guide/README.md](guide/README.md)-এ।
 
-**লাইভ:** https://sojibrd.github.io/emberjs_learning/ — deploy-এর পরে; ২০২৬-১০-১১-এ এখনো হয়নি।
+**লাইভ:** https://sojibrd.github.io/emberjs_learning/
 
 ## Functional Requirement
 

@@ -12,7 +12,7 @@
 - **সময় ⏳** — দিনের ১০′ সপ্তাহে ৭ ঘণ্টার ভেতরে না বাইরে, ব্যবহারকারীর উত্তর বাকি। `suggestedStart` তাই `null`; কোনো plan-এর ঘর থেকে সময় কাটবেন না।
 - 🧠 নাম → `app/lib/principles.ts`, `learning_to_learn`-এর ঐ ফাইলের কপি (৫৭টা বিষয়; এক লাইন = ব্যাখ্যার প্রথম বাক্য), লিংক ঐ সাইটের লাইভ Pages-এ। ওখানে বদলালে এখানেও।
 - Progress চার key (`ember:v1:start`, `task`, `check`, `review`) — একমাত্র `app/hooks/useProgress.ts` দিয়ে; পঞ্চম key `ember:v1:meta` শুধু sync-এর timestamp। কাজের লেখা বদলালে ঐ কাজের টিক হারায় (id = দিন + লেখার hash)।
-- **Cross-device sync** — বাকি সাইটের মতোই: `app/lib/supabase.ts`, `app/hooks/useSync(Key).ts`, `app/components/SyncSettings.tsx`, `app/sync/page.tsx` chassis থেকে হুবহু, নিজে থেকে বদলাবেন না। `site_prefix` = `SITE.storagePrefix` = `ember`। `deploy.yml`-এর env নাম `NEXT_PUBLIC_SUPABASE_*` — বদলালে sync চুপচাপ মরে যাবে। **এখনো deploy হয়নি** (২০২৬-১০-১১): GitHub repo, দুটো secret আর Pages বসানো ব্যবহারকারীর হাতে; sync লাইভে যাচাই বাকি।
+- **Cross-device sync** — বাকি সাইটের মতোই: `app/lib/supabase.ts`, `app/hooks/useSync(Key).ts`, `app/components/SyncSettings.tsx`, `app/sync/page.tsx` chassis থেকে হুবহু, নিজে থেকে বদলাবেন না। `site_prefix` = `SITE.storagePrefix` = `ember`। `deploy.yml`-এর env নাম `NEXT_PUBLIC_SUPABASE_*` — বদলালে sync চুপচাপ মরে যাবে। **লাইভ ২০২৬-১০-১১** — deployed chunk-এ Supabase-এর URL আর anon key `learning_to_learn`-এরটার সাথে মিলিয়ে দেখা, আর ঐ key দিয়ে `progress_sync` সাড়া দেয়। দুই device-এ আসল push/pull এখনো পরীক্ষা হয়নি — পরীক্ষায় টেবিলে একটা row লেখা লাগে, সেটা ব্যবহারকারীর নিজের sync key দিয়ে হবে।
 - `app/lib/plan.ts` আর `app/lib/guide.ts` server-only।
 - **Theme contract অলঙ্ঘনীয়**, সাইট **dark-only**। code block-এ syntax highlighting নেই — chassis-এর `.doc-prose pre`।
 
