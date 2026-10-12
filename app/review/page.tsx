@@ -14,7 +14,10 @@ export default function ReviewPage() {
           plan-এর প্রতিটা 🔁 কাজ টিক দেওয়ার দিন থেকে নিজে এখানে ফিরে আসে; হাতে কিছু যোগ করতে হয় না। rule-এর নাম
           দেখে, গাইড না খুলে — &ldquo;কেন&rdquo; এক লাইনে, ইংরেজিতে, জোরে। 🧠 Spaced repetition · Test yourself
         </p>
-        <p className="t-caption">সব ডেটা শুধু এই ব্রাউজারে থাকে।</p>
+        <p className="t-caption">
+          progress এই ব্রাউজারে থাকে। sync key বসালে একটা কপি শেয়ার্ড Supabase টেবিলেও যায় — ঐ টেবিল সাইটের JS-এ
+          থাকা public key দিয়েই যে কেউ পড়তে পারে, তাই এটা গোপন কিছুর জায়গা নয়।
+        </p>
       </header>
       <ReviewList items={getRepeatTasks()} mode="all" />
     </>

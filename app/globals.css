@@ -721,6 +721,8 @@ body {
     border: var(--t-chip-border-width) solid var(--t-doc-code-border);
     border-radius: var(--t-chip-radius);
     padding: 0.1em 0.35em;
+    /* লম্বা path বা নাম ভাঙে না — ফোনে পাতা পাশে সরে যেত */
+    overflow-wrap: anywhere;
   }
 
   .doc-prose pre {

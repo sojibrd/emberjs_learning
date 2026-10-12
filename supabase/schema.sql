@@ -1,7 +1,8 @@
--- Cross-device progress sync — একটা শেয়ার্ড Supabase project, ১০টা
--- workspace সাইটের জন্য। Supabase dashboard-এর SQL editor-এ এটা একবার
--- চালান। `site_prefix` (যেমন ldsa/rdsa/gdsa) দিয়ে প্রতিটা সাইটের ডেটা
--- আলাদা থাকে একই row-সেটে।
+-- Cross-device progress sync — একটা শেয়ার্ড Supabase project, workspace-এর
+-- সব দিনভিত্তিক সাইটের জন্য। টেবিলটা ঐ project-এ আগে থেকেই আছে; নতুন project
+-- হলে Supabase dashboard-এর SQL editor-এ এটা একবার চালান। `site_prefix` =
+-- প্রতিটা সাইটের `SITE.storagePrefix` (যেমন `ember`, `nextjs`, `nestjs`) —
+-- একই টেবিলে সাইটগুলোর ডেটা আলাদা থাকে।
 
 create table if not exists progress_sync (
   sync_key text not null,
@@ -13,10 +14,11 @@ create table if not exists progress_sync (
 
 alter table progress_sync enable row level security;
 
--- এখানে "auth" মানে sync_key নিজেই — client-এ random UUID হিসেবে বানানো
--- হয়, অনুমান করা বাস্তবে অসম্ভব। তাই anon role-কে সব row-এ read/write
--- অনুমতি দেওয়া হচ্ছে; আসল boundary হলো key জানা থাকা (capability-based)।
--- personal, low-stakes progress-ডেটার জন্য যথেষ্ট — সংবেদনশীল তথ্যের জন্য নয়।
+-- এখানে কোনো auth নেই। anon role সব row পড়তে আর লিখতে পারে, আর select
+-- `using (true)` হওয়ায় sync_key-সহ পুরো টেবিল তালিকা করা যায় — anon key
+-- সাইটের JS-এ public, তাই key জানা থাকা কোনো boundary নয়। personal,
+-- low-stakes progress-এর জন্য মেনে নেওয়া; গোপন বা সংবেদনশীল তথ্য এখানে নয়।
+-- delete policy নেই, তাই anon role কোনো row মুছতে পারে না।
 create policy "sync by key - select" on progress_sync for select using (true);
 create policy "sync by key - insert" on progress_sync for insert with check (true);
 create policy "sync by key - update" on progress_sync for update using (true) with check (true);
